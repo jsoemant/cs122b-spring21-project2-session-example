@@ -24,7 +24,8 @@ public class ItemsServlet extends HttpServlet {
         if (previousItems == null) {
 
             // Add the newly created ArrayList to session, so that it could be retrieved next time
-            session.setAttribute("previousItems", new ArrayList<>());
+            previousItems = new ArrayList<>();
+            session.setAttribute("previousItems", previousItems);
         }
 
         String newItem = request.getParameter("newItem"); // Get parameter that sent by GET request url
@@ -53,7 +54,7 @@ public class ItemsServlet extends HttpServlet {
                 out.println("<i>No items</i>");
             } else {
                 out.println("<ul>");
-                for (Object previousItem : previousItems) {
+                for (String previousItem : previousItems) {
                     out.println("<li>" + previousItem);
                 }
                 out.println("</ul>");
